@@ -16,10 +16,10 @@ namespace Minesweeper
         {
             board = new byte[rows, columns];
             landmineInstaller.InstallLandmine(board, landMine, landminesCalculator);
-            landminesDetector.DetectLandmines(board, landMine, this.IsLandmine);
+            landminesDetector.DetectLandmines(board, landMine, IsLandmine);
         }
 
-        public bool IsLandmine(int row, int column)
+        public static bool IsLandmine(byte[,] board, int row, int column)
         {
             if (board[row, column] == landMine)
             {
