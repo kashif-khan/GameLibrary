@@ -10,6 +10,7 @@ namespace Minesweeper.Tests
     public class DefaultLandmineDetectorTests
     {
         private readonly byte landMine = 9;
+        byte[,] board;
 
         /// <summary>
         /// Actual Input
@@ -27,7 +28,7 @@ namespace Minesweeper.Tests
         public void DetectLandminesTest()
         {
             var defaultLandmineDetector = new DefaultLandmineDetector();
-            byte[,] board = new byte[4, 4] { { 0, 0, 0, landMine }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
+            board = new byte[4, 4] { { 0, 0, 0, landMine }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
             var expectedOutput = "0019001100000000";
             defaultLandmineDetector.DetectLandmines(board, landMine, IsLandmine);
             var outputAccumulator = new StringBuilder();
@@ -41,9 +42,9 @@ namespace Minesweeper.Tests
             Assert.AreEqual(expectedOutput, outputAccumulator.ToString());
         }
 
-        private bool IsLandmine(byte[,] arg1, int arg2, int arg3)
+        private bool IsLandmine(int arg2, int arg3)
         {
-            if (arg1[arg2, arg3] == landMine)
+            if (board[arg2, arg3] == landMine)
             {
                 return true;
             }

@@ -12,7 +12,7 @@ namespace Minesweeper
         /// </summary>
         /// <param name="board"></param>
         /// <param name="landMine"></param>
-        public void DetectLandmines(byte[,] board, byte landMine, Func<byte[,], int, int, bool> IsLandmine)
+        public void DetectLandmines(byte[,] board, byte landMine, Func<int, int, bool> IsLandmine)
         {
             var rowMax = board.GetLength(0);
             var columnMax = board.GetLength(1);
@@ -67,9 +67,9 @@ namespace Minesweeper
             }
         }
 
-        private static bool IsMyNeighborLandmine(byte[,] board, Func<byte[,], int, int, bool> IsLandmine, int rowIndex, int ColumnIndex)
+        private static bool IsMyNeighborLandmine(byte[,] board, Func<int, int, bool> IsLandmine, int rowIndex, int ColumnIndex)
         {
-            if (rowIndex > -1 && rowIndex < board.GetLength(0) && ColumnIndex > -1 && ColumnIndex < board.GetLength(1) && IsLandmine(board, rowIndex, ColumnIndex))
+            if (rowIndex > -1 && rowIndex < board.GetLength(0) && ColumnIndex > -1 && ColumnIndex < board.GetLength(1) && IsLandmine(rowIndex, ColumnIndex))
             {
                 return true;
             }
